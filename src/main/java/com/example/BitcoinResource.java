@@ -19,7 +19,7 @@ public class BitcoinResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public List<BitcoinModel> list() {
-        return bitcoinService.list();
+        return this.bitcoinService.list();
     }
 
     @GET
