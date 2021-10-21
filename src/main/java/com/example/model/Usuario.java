@@ -1,13 +1,20 @@
 package com.example.model;
 
+import io.quarkus.elytron.security.common.BcryptUtil;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
+import io.quarkus.security.jpa.Password;
+import io.quarkus.security.jpa.Roles;
+import io.quarkus.security.jpa.UserDefinition;
+import io.quarkus.security.jpa.Username;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@UserDefinition
 public class Usuario extends PanacheEntityBase {
 
     @Id
@@ -18,9 +25,27 @@ public class Usuario extends PanacheEntityBase {
 
     private String cpf;
 
+    @Username
     private String username;
 
+    @Password
     private String password;
+
+    @Roles
+    private String role;
+
+    public static void preparar(final Usuario usuario) {
+        usuario.password = BcryptUtil.bcryptHash(usuario.password);
+        usuario.role = validarUsername(usuario.username);
+    }
+
+    private static String validarUsername(final String username) {
+        if (username.equals("master")) {
+            return "admin";
+        } else {
+            return "user";
+        }
+    }
 
     public Long getId() {
         return this.id;
@@ -54,11 +79,20 @@ public class Usuario extends PanacheEntityBase {
         this.username = username;
     }
 
+    @JsonbTransient
     public String getPassword() {
         return this.password;
     }
 
     public void setPassword(final String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return this.role;
+    }
+
+    public void setRole(final String role) {
+        this.role = role;
     }
 }
