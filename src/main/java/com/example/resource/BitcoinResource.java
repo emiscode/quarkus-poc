@@ -1,5 +1,7 @@
-package com.example;
+package com.example.resource;
 
+import com.example.model.Bitcoin;
+import com.example.service.BitcoinService;
 import org.eclipse.microprofile.rest.client.inject.RestClient;
 
 import javax.inject.Inject;
@@ -18,7 +20,7 @@ public class BitcoinResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public List<BitcoinModel> list() {
+    public List<Bitcoin> list() {
         return this.bitcoinService.list();
     }
 

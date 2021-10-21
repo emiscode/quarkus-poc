@@ -1,10 +1,10 @@
-package com.example;
+package com.example.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
 
-public class BitcoinModel {
+public class Bitcoin {
 
     @JsonProperty("id")
     private Long id;
@@ -19,34 +19,34 @@ public class BitcoinModel {
     private LocalDate data;
 
     public Long getId() {
-        return id;
+        return this.id;
     }
 
-    public void setId(Long id) {
+    public void setId(final Long id) {
         this.id = id;
     }
 
     public Double getPreco() {
-        return preco;
+        return this.preco;
     }
 
-    public void setPreco(Double preco) {
+    public void setPreco(final Double preco) {
         this.preco = preco;
     }
 
     public String getTipo() {
-        return tipo;
+        return this.tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(final String tipo) {
         this.tipo = tipo;
     }
 
     public LocalDate getData() {
-        return data;
+        return this.data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(final LocalDate data) {
         this.data = data;
     }
 }

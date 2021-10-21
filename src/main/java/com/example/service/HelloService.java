@@ -1,11 +1,11 @@
-package com.example;
+package com.example.service;
 
 import javax.enterprise.context.ApplicationScoped;
 
 @ApplicationScoped
 public class HelloService {
 
-    public String greeting(String name) {
+    public static String greeting(final String name) {
         return "hello " + name;
     }
 }

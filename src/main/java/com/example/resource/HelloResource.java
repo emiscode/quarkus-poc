@@ -1,5 +1,6 @@
-package com.example;
+package com.example.resource;
 
+import com.example.service.HelloService;
 import org.jboss.resteasy.annotations.jaxrs.PathParam;
 
 import javax.inject.Inject;
@@ -17,8 +18,8 @@ public class HelloResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/greeting/{name}")
-    public String greeting(@PathParam String name) {
-        return helloService.greeting(name);
+    public String greeting(@PathParam final String name) {
+        return HelloService.greeting(name);
     }
 
     @GET
