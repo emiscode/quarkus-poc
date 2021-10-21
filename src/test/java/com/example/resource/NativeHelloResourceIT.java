@@ -1,4 +1,4 @@
-package com.example;
+package com.example.resource;
 
 import io.quarkus.test.junit.NativeImageTest;
 
